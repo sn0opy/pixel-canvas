@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<title>Canvas pixel</title>
+
+	<style type="text/css">
+	html, body {
+		height: 100%;
+	}
+	body {
+		margin: 0px;
+		padding: 0px;
+	}
+	</style>
+
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="jcanvas.min.js"></script>
+	<script type="text/javascript" src="socket.io/socket.io.js"></script>
+	<script type="text/javascript">
+	function drawPixel(pix_x, pix_y, pix_color) {
+		$('canvas').drawRect({
+   	    	fillStyle: pix_color,
+            x: pix_x, 
+            y: pix_y,
+            width: 1, 
+            height: 1,
+            fromCenter: 0
+		});	
+	}
+
+	$(document).ready(function() {
+		doc_height = $(document).height()-4;
+		doc_width = $(document).width();
+
+		$('canvas').height(doc_height);
+		$('canvas').attr('height', doc_height);
+		$('canvas').width(doc_width);
+		$('canvas').attr('width', doc_width);
+
+		var socket = io.connect('http://localhost:4000');
+        socket.on('pixel', function (data) {
+            drawPixel(data.x, data.y, data.color);
+        });
+	});
+	</script>
+</head>
+<body>
+<canvas id="bla" height="10" width="10"></canvas>
+</body>
+</html>

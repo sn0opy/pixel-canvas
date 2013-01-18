@@ -1,0 +1,11 @@
+{
+  "name": "pixel-canvas",
+  "version": "0.1",
+  "description": "pixel-canvas retrieves and renders pixel to a canvas, yay"
+  "dependencies": {
+    "mongojs": "0.5.1",
+    "connect": "2.7.0",
+    "socket.io": "0.9.13",
+  },
+  "author": "name": "Sascha Ohms"
+}
